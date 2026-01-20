@@ -10,4 +10,9 @@
     <Folder Include="IRepository\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HotelManagement.DAL.SQL\HotelManagement.DAL.SQL.csproj" />
+    <ProjectReference Include="..\HotelManagement.WebApi.Models\HotelManagement.WebApi.Models.csproj" />
+  </ItemGroup>
+
 </Project>

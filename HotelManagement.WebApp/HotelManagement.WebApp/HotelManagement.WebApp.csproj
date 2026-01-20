@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\HotelManagement.ServiceDefaults\HotelManagement.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\..\HotelManagement.Services\HotelManagement.Services.csproj" />
+    <ProjectReference Include="..\..\HotelManagement.WebApi.Models\HotelManagement.WebApi.Models.csproj" />
     <ProjectReference Include="..\HotelManagement.WebApp.Client\HotelManagement.WebApp.Client.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.2" />
   </ItemGroup>
