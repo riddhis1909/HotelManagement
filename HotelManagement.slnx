@@ -4,7 +4,7 @@
   <Project Path="HotelManagement.Repositories/HotelManagement.Repositories.csproj" />
   <Project Path="HotelManagement.ServiceDefaults/HotelManagement.ServiceDefaults.csproj" />
   <Project Path="HotelManagement.Services/HotelManagement.Services.csproj" />
-  <Project Path="HotelManagement.SQL.DB/HotelManagement.SQL.DB.sqlproj">
+  <Project Path="HotelManagement.SQL.DB/HotelManagement.SQL.DB.sqlproj" Id="a509ac9f-8274-4973-afc6-2f10cfcd473c">
     <Build />
     <Deploy />
   </Project>

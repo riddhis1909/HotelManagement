@@ -1,4 +1,3 @@
-using HotelManagement.WebApp.Client.Pages;
 using HotelManagement.WebApp.Components;
 
 var builder = WebApplication.CreateBuilder(args);
