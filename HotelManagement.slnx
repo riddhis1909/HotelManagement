@@ -1,0 +1,14 @@
+<Solution>
+  <Project Path="HotelManagement.AppHost/HotelManagement.AppHost.csproj" />
+  <Project Path="HotelManagement.DAL.SQL/HotelManagement.DAL.SQL.csproj" />
+  <Project Path="HotelManagement.Repositories/HotelManagement.Repositories.csproj" />
+  <Project Path="HotelManagement.ServiceDefaults/HotelManagement.ServiceDefaults.csproj" />
+  <Project Path="HotelManagement.Services/HotelManagement.Services.csproj" />
+  <Project Path="HotelManagement.SQL.DB/HotelManagement.SQL.DB.sqlproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="HotelManagement.WebApi.Models/HotelManagement.WebApi.Models.csproj" />
+  <Project Path="HotelManagement.WebApp/HotelManagement.WebApp.Client/HotelManagement.WebApp.Client.csproj" />
+  <Project Path="HotelManagement.WebApp/HotelManagement.WebApp/HotelManagement.WebApp.csproj" />
+</Solution>
