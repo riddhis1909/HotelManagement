@@ -8,6 +8,10 @@ builder.AddServiceDefaults();
 builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
+builder.Services.AddControllers().AddXmlSerializerFormatters();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 
 app.MapDefaultEndpoints();
@@ -16,6 +20,8 @@ app.MapDefaultEndpoints();
 if (app.Environment.IsDevelopment())
 {
     app.UseWebAssemblyDebugging();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 else
 {
@@ -32,5 +38,7 @@ app.MapStaticAssets();
 app.MapRazorComponents<App>()
     .AddInteractiveWebAssemblyRenderMode()
     .AddAdditionalAssemblies(typeof(HotelManagement.WebApp.Client._Imports).Assembly);
+
+app.MapControllers();
 
 app.Run();
