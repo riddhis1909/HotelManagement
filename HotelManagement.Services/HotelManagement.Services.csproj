@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="IService\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\HotelManagement.Repositories\HotelManagement.Repositories.csproj" />
     <ProjectReference Include="..\HotelManagement.WebApi.Models\HotelManagement.WebApi.Models.csproj" />
   </ItemGroup>
