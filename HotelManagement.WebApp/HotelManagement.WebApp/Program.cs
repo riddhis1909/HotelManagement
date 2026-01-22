@@ -1,4 +1,10 @@
+using HotelManagement.DAL.SQL.DBContext;
+using HotelManagement.Repositories;
+using HotelManagement.Repositories.IRepository;
+using HotelManagement.Services;
+using HotelManagement.Services.IService;
 using HotelManagement.WebApp.Components;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +17,15 @@ builder.Services.AddRazorComponents()
 builder.Services.AddControllers().AddXmlSerializerFormatters();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+// Add DbContext ConnectionString 
+
+var SQLDBConnectionString = builder.Configuration.GetValue<string>("ConnectionStrings:DBConnectionString");
+
+builder.Services.AddDbContext<HotelManagementContext>(options => options.UseSqlServer(SQLDBConnectionString));
 
 var app = builder.Build();
 
@@ -31,6 +46,8 @@ else
 }
 app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages: true);
 app.UseHttpsRedirection();
+app.UseRouting();
+app.UseStaticFiles();
 
 app.UseAntiforgery();
 
