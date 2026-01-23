@@ -131,9 +131,16 @@ namespace HotelManagement.Repositories
                         _logger.LogInformation("Repository : UserRegistration method found null request model");
                         return Result.NoContent();
                     }
-
+                    
+                    var emailVerification = await _dbContext.tblUsers.Where(item => item.EmailID == userRegistrationRequestModel.EmailID).FirstOrDefaultAsync();
+                    if(emailVerification != null)
+                    {
+                        _logger.LogInformation("Repository : UserRegistration method found existing email id {0}", userRegistrationRequestModel.EmailID);
+                        return Result.Conflict("Email ID already exists");
+                    }
+                   
                     tblUser dbUser = new tblUser();
-                    dbUser.RoleID = userRegistrationRequestModel.RoleID;
+                    dbUser.RoleID = 2;
                     dbUser.FirstName = userRegistrationRequestModel.FirstName;
                     dbUser.LastName = userRegistrationRequestModel.LastName;
                     dbUser.EmailID = userRegistrationRequestModel.EmailID;

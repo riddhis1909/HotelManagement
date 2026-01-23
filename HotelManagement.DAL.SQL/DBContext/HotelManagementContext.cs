@@ -42,6 +42,8 @@ public partial class HotelManagementContext : DbContext
 
             entity.ToTable("tblUser");
 
+            entity.HasIndex(e => e.EmailID, "UQ_tblUser_EmailID").IsUnique();
+
             entity.Property(e => e.Address).IsUnicode(false);
             entity.Property(e => e.City)
                 .HasMaxLength(20)

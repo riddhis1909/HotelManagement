@@ -5,6 +5,7 @@ using HotelManagement.Services;
 using HotelManagement.Services.IService;
 using HotelManagement.WebApp.Components;
 using Microsoft.EntityFrameworkCore;
+using Radzen;
 
 var builder = WebApplication.CreateBuilder(args);
 

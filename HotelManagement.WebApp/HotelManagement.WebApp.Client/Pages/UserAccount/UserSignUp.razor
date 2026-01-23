@@ -1,0 +1,57 @@
+﻿@page "/SignUp"
+@using HotelManagement.WebApp.Client.Models.UserModels
+
+<RadzenCard class="rz-my-12 rz-mx-auto rz-p-4 rz-p-md-12" style="max-width: 450px;">
+    <div style="text-align:center; color: #4340d2; font-size:24px; font-weight:600; margin-top:0rem; margin-bottom:1rem;"> Sign up </div>
+    <RadzenTemplateForm TItem="UserRegistrationWebAppModel" Data="@userRegistrationWebAppModel" Submit="OnSignUpClick">
+        <RadzenStack Orientation="Orientation.Vertical" JustifyContent="JustifyContent.SpaceEvenly" AlignItems="AlignItems.Center">
+            <RadzenFormField Component="FirstName" Text="First Name" Style="width: 80%; font-size: small;">
+                <ChildContent>
+                    <RadzenTextBox Name="FirstName" @bind-Value="@userRegistrationWebAppModel.FirstName" />
+                </ChildContent>
+                <Helper>
+                    <RadzenDataAnnotationValidator Component="FirstName" Style="position: initial;" />
+                </Helper>
+            </RadzenFormField>
+            <RadzenFormField Component="LastName" Text="Last Name" Style="width: 80%; font-size: small;">
+                <ChildContent>
+                    <RadzenTextBox Name="LastName" @bind-Value="@userRegistrationWebAppModel.LastName" />
+                </ChildContent>
+                <Helper>
+                    <RadzenDataAnnotationValidator Component="LastName" Style="position: initial;" />
+                </Helper>
+            </RadzenFormField>
+            <RadzenFormField Component="EmailID" Text="Email ID" Style="width: 80%; font-size: small;">
+                <ChildContent>
+                    <RadzenTextBox Name="EmailID" @bind-Value="@userRegistrationWebAppModel.EmailID" Change="OnEmailChange" />
+                </ChildContent>
+                <Helper>
+                    <RadzenDataAnnotationValidator Component="EmailID" Style="position: initial;" />
+                    <RadzenLabel Text="@duplicateEmailError" Style="color: red"/>
+                </Helper>
+            </RadzenFormField>
+            <RadzenFormField Component="MobileNumber" Text="Mobile Number" Style="width: 80%; font-size: small;">
+                <ChildContent>
+                    <RadzenTextBox Name="MobileNumber" @bind-Value="@userRegistrationWebAppModel.MobileNumber" />
+                </ChildContent>
+                <Helper>
+                    <RadzenDataAnnotationValidator Component="MobileNumber" Style="position: initial;" />
+                </Helper>
+            </RadzenFormField>
+            <RadzenFormField Component="Password" Text="Password" Style="width: 80%; font-size: small;">
+                <ChildContent>
+                    <RadzenPassword Name="Password" @bind-Value="@userRegistrationWebAppModel.Password" />
+                </ChildContent>
+                <Helper>
+                    <RadzenDataAnnotationValidator Component="Password" Style="position: initial;" />
+                </Helper>
+            </RadzenFormField>
+        </RadzenStack>
+        <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.SpaceBetween" AlignItems="AlignItems.Start" Style="margin-top: 2rem; width:80%; margin-left:auto; margin-right:auto;">
+            <RadzenButton Text="sign up" ButtonType="ButtonType.Submit" ButtonStyle="ButtonStyle.Primary" IsBusy="isBusy" />
+            <RadzenStack Orientation="Orientation.Vertical" AlignItems="AlignItems.Center">
+                <RadzenLink Path="/" Text="Go back to Sign in." Style="color:#4340d2; margin-bottom:-4px;" />
+            </RadzenStack>
+        </RadzenStack>
+    </RadzenTemplateForm>
+</RadzenCard>
