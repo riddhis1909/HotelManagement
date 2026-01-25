@@ -15,7 +15,7 @@ namespace HotelManagement.WebApp.Client.IServices
         Task<ApiResponse<Boolean>> UserRegistration(UserRegistrationWebAppModel userRegistrationWebAppModel);
 
         [Post("/User/UserLogin")]
-        Task<ApiResponse<int>> UserLogin(UserLoginWebAppModel userLoginWebAppModel);
+        Task<ApiResponse<string>> UserLogin(UserLoginWebAppModel userLoginWebAppModel);
 
         [Get("/User/EmailVerification")]
         Task<ApiResponse<Boolean>> EmailVerification(string emailID);

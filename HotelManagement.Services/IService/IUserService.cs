@@ -14,7 +14,7 @@ namespace HotelManagement.Services.IService
 
         Task<Result> UserRegistrationService(UserRegistrationModel userRegistrationRequestModel);
 
-        Task<Result<int>> UserLoginService(UserLoginModel userLoginRequestModel);
+        Task<Result<string>> UserLoginService(UserLoginModel userLoginRequestModel);
 
         Task<Result> EmailVerificationService(string emailID);
 

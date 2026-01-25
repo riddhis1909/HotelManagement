@@ -2,6 +2,7 @@
 using Ardalis.Result.AspNetCore;
 using HotelManagement.Services.IService;
 using HotelManagement.WebApi.Models.UserModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,7 @@ namespace HotelManagement.WebApp.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         [HttpGet("GetUserDetails")]
         public async Task<Result<List<GetUserModel>>> GetUserDetails()
         {
@@ -39,6 +41,7 @@ namespace HotelManagement.WebApp.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet("GetUserDetailsByID")]
         public async Task<Result<GetUserModel>> GetUserDetailsByID(int userID)
         {
@@ -78,7 +81,7 @@ namespace HotelManagement.WebApp.Controllers
         }
 
         [HttpPost("UserLogin")]
-        public async Task<Result<int>> UserLogin(UserLoginModel userLoginRequestModel)
+        public async Task<Result<string>> UserLogin(UserLoginModel userLoginRequestModel)
         {
             try
             {
@@ -133,5 +136,6 @@ namespace HotelManagement.WebApp.Controllers
                 return Result.Error(ex.Message);
             }
         }
+
     }
 }

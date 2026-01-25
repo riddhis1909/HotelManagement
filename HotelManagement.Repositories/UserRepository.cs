@@ -3,11 +3,14 @@ using HotelManagement.DAL.SQL.DBContext;
 using HotelManagement.Repositories.IRepository;
 using HotelManagement.WebApi.Models.UserModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 
 namespace HotelManagement.Repositories
@@ -16,10 +19,12 @@ namespace HotelManagement.Repositories
     {
         private readonly HotelManagementContext _dbContext;
         private readonly ILogger _logger;
-        public UserRepository(HotelManagementContext dbContext, ILogger<UserRepository> logger)
+        private readonly IConfiguration _configuration;
+        public UserRepository(HotelManagementContext dbContext, ILogger<UserRepository> logger, IConfiguration configuration)
         {
             _dbContext = dbContext;
             _logger = logger;
+            _configuration = configuration;
         }
 
         public async Task<Result<List<GetUserModel>>> GetUserDetails()
@@ -131,14 +136,14 @@ namespace HotelManagement.Repositories
                         _logger.LogInformation("Repository : UserRegistration method found null request model");
                         return Result.NoContent();
                     }
-                    
+
                     var emailVerification = await _dbContext.tblUsers.Where(item => item.EmailID == userRegistrationRequestModel.EmailID).FirstOrDefaultAsync();
-                    if(emailVerification != null)
+                    if (emailVerification != null)
                     {
                         _logger.LogInformation("Repository : UserRegistration method found existing email id {0}", userRegistrationRequestModel.EmailID);
                         return Result.Conflict("Email ID already exists");
                     }
-                   
+
                     tblUser dbUser = new tblUser();
                     dbUser.RoleID = 2;
                     dbUser.FirstName = userRegistrationRequestModel.FirstName;
@@ -174,7 +179,7 @@ namespace HotelManagement.Repositories
             }
         }
 
-        public async Task<Result<int>> UserLogin(UserLoginModel userLoginRequestModel)
+        public async Task<Result<string>> UserLogin(UserLoginModel userLoginRequestModel)
         {
             try
             {
@@ -191,8 +196,24 @@ namespace HotelManagement.Repositories
                 {
                     if (userData.Password == userLoginRequestModel.Password)
                     {
+                        var claim = new List<Claim>
+                        {
+                            new Claim(ClaimTypes.NameIdentifier, userData.UserID.ToString()),
+                            new Claim(ClaimTypes.Email, userData.EmailID),
+                            new Claim(ClaimTypes.Role, userData.RoleID.ToString())
+                        };
+                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+                        var credential = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                        var token = new JwtSecurityToken(
+                            issuer: _configuration["Jwt:Issuer"],
+                            audience: _configuration["Jwt:Audience"],
+                            expires: DateTime.UtcNow.AddMinutes(120),
+                            claims: claim,
+                            signingCredentials: credential
+                        );
+                        var jwt = new JwtSecurityTokenHandler().WriteToken(token);
                         _logger.LogInformation("Repository : UserLogin method completed");
-                        return Result.Success(userData.UserID);
+                        return Result.Success(jwt);
                     }
                     else
                     {

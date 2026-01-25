@@ -73,7 +73,7 @@ namespace HotelManagement.Services
             }
         }
 
-        public async Task<Result<int>> UserLoginService(UserLoginModel userLoginRequestModel)
+        public async Task<Result<string>> UserLoginService(UserLoginModel userLoginRequestModel)
         {
             try
             {

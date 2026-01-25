@@ -14,7 +14,7 @@ namespace HotelManagement.Repositories.IRepository
 
         Task<Result> UserRegistration(UserRegistrationModel userRegistrationRequestModel);
 
-        Task<Result<int>> UserLogin(UserLoginModel userLoginRequestModel);
+        Task<Result<string>> UserLogin(UserLoginModel userLoginRequestModel);
 
         Task<Result> EmailVerification(string emailID);
 

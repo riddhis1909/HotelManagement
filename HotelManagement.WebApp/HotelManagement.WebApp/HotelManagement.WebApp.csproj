@@ -19,9 +19,12 @@
     <ProjectReference Include="..\..\HotelManagement.Services\HotelManagement.Services.csproj" />
     <ProjectReference Include="..\..\HotelManagement.WebApi.Models\HotelManagement.WebApi.Models.csproj" />
     <ProjectReference Include="..\HotelManagement.WebApp.Client\HotelManagement.WebApp.Client.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.2" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.15.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="10.0.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.15.0" />
   </ItemGroup>
 
 </Project>
