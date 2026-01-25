@@ -26,10 +26,17 @@ namespace HotelManagement.WebApp.Client.Pages.UserAccount
 
         public async void OnVerifyEmailClick()
         {
-            isBusy = true;
-            await VerifyEmailApi();
-            isBusy = false;
-            StateHasChanged();
+            if (emailID == null)
+            {
+                EmailErrorMessage = "Please enter email id.";
+            }
+            else
+            {
+                isBusy = true;
+                await VerifyEmailApi();
+                isBusy = false;
+                StateHasChanged();
+            }
         }
 
         public async void OnEmailChange()

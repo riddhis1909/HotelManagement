@@ -240,7 +240,7 @@ namespace HotelManagement.Repositories
             {
                 _logger.LogInformation("Repository : EmailVerification method initiated");
 
-                if (emailID.IsNullOrEmpty())
+                if (emailID == null)
                 {
                     _logger.LogInformation("Repository : EmailVerification method executed with no email");
                     return Result.NoContent();
@@ -272,7 +272,7 @@ namespace HotelManagement.Repositories
                 {
                     _logger.LogInformation("Repository : ChangePassword method initiated");
 
-                    if (emailID.IsNullOrEmpty())
+                    if (emailID == null)
                     {
                         _logger.LogInformation("Repository : ChangePassword method executed with no email");
                         return Result.NoContent();
