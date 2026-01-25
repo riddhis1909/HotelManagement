@@ -2,6 +2,7 @@
 using HotelManagement.DAL.SQL.DBContext;
 using HotelManagement.Repositories.IRepository;
 using HotelManagement.WebApi.Models.UserModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -12,6 +13,7 @@ using System.Data.Common;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+
 
 namespace HotelManagement.Repositories
 {
@@ -143,7 +145,7 @@ namespace HotelManagement.Repositories
                         _logger.LogInformation("Repository : UserRegistration method found existing email id {0}", userRegistrationRequestModel.EmailID);
                         return Result.Conflict("Email ID already exists");
                     }
-
+                    var passwordHash = new PasswordHasher<object>();
                     tblUser dbUser = new tblUser();
                     dbUser.RoleID = 2;
                     dbUser.FirstName = userRegistrationRequestModel.FirstName;
@@ -154,7 +156,7 @@ namespace HotelManagement.Repositories
                     dbUser.City = userRegistrationRequestModel.City;
                     dbUser.ZipCode = userRegistrationRequestModel.ZipCode;
                     dbUser.StateID = userRegistrationRequestModel.StateID;
-                    dbUser.Password = userRegistrationRequestModel.Password;
+                    dbUser.Password = passwordHash.HashPassword(null, userRegistrationRequestModel.Password);
                     dbUser.IsProfileActive = true;
                     dbUser.CreatedBy = 1;
                     dbUser.CreatedDate = DateTime.Now;
@@ -194,7 +196,9 @@ namespace HotelManagement.Repositories
                 var userData = await _dbContext.tblUsers.Where(item => item.EmailID == userLoginRequestModel.EmailID).FirstOrDefaultAsync();
                 if (userData != null)
                 {
-                    if (userData.Password == userLoginRequestModel.Password)
+                    var passwordHash = new PasswordHasher<object>();
+                    var verifyPassword = passwordHash.VerifyHashedPassword(null, userData.Password, userLoginRequestModel.Password);
+                    if (verifyPassword == PasswordVerificationResult.Success)
                     {
                         var claim = new List<Claim>
                         {
