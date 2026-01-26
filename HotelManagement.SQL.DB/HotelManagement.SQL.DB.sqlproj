@@ -62,5 +62,8 @@
   <ItemGroup>
     <Build Include="dbo\Tables\tblUser.sql" />
     <Build Include="dbo\Tables\tblRole.sql" />
+    <Build Include="dbo\Tables\tblState.sql" />
+    <Build Include="dbo\Tables\tblRoomStatus.sql" />
+    <Build Include="dbo\Tables\tblCountry.sql" />
   </ItemGroup>
 </Project>

@@ -19,6 +19,7 @@
     [DeletedDate]     DATETIME      NULL,
     [LastLoginDate]   DATETIME      NULL,
     CONSTRAINT [PK_tblUser] PRIMARY KEY CLUSTERED ([UserID] ASC),
-    CONSTRAINT [FK_tblUser_tblRole] FOREIGN KEY ([RoleID]) REFERENCES [dbo].[tblRole] ([RoleID])
+    CONSTRAINT [FK_tblUser_tblRole] FOREIGN KEY ([RoleID]) REFERENCES [dbo].[tblRole] ([RoleID]),
+    CONSTRAINT [UQ_tblUser_EmailID] UNIQUE NONCLUSTERED ([EmailID] ASC)
 );
 
