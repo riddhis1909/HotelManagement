@@ -1,1 +1,1 @@
-﻿Scaffold-DbContext "Data Source=DESKTOP-RIDDHI\SQLEXPRESS;database=HotelManagement;Trusted_Connection=true;TrustServerCertificate=True;Connect Timeout=60;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DBContext -Context HotelManagementContext -UseDatabaseNames -f
+﻿Scaffold-DbContext "Data Source=NUCBOX_M2PRO;database=HotelManagement;Trusted_Connection=true;TrustServerCertificate=True;Connect Timeout=60;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DBContext -Context HotelManagementContext -UseDatabaseNames -f

@@ -40,10 +40,16 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IRoomStatusService, RoomStatusService>();
+builder.Services.AddScoped<IRoomStatusRepository, RoomStatusRepository>();
+builder.Services.AddScoped<ICountryService, CountryService>();
+builder.Services.AddScoped<ICountryRepository, CountryRepository>();
 
 // Add DbContext ConnectionString 
 
-var SQLDBConnectionString = builder.Configuration.GetValue<string>("ConnectionStrings:DBConnectionString");
+var SQLDBConnectionString = builder.Configuration.GetValue<string>("ConnectionStrings:DBConnectionString_Riddhi");
 
 builder.Services.AddDbContext<HotelManagementContext>(options => options.UseSqlServer(SQLDBConnectionString));
 

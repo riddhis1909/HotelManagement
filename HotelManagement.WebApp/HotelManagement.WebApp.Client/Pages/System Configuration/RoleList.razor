@@ -1,0 +1,13 @@
+﻿@page "/RoleList"
+
+<RadzenDataGrid Data="@getRoleWebAppModel" ColumnWidth="200px" AllowFiltering="true" FilterPopupRenderMode="PopupRenderMode.OnDemand" FilterMode="FilterMode.Advanced" AllowPaging="true" AllowSorting="false">
+    <Columns>
+        <RadzenDataGridColumn Property="RoleName" Title="Role Name" Filterable="false" />
+        <RadzenDataGridColumn Property="Description" Title="Description" Filterable="false" />
+        <RadzenDataGridColumn Property="IsRoleActive" Title="Status" Filterable="false">
+            <Template>
+                <RadzenBadge BadgeStyle="@(context.IsRoleActive? BadgeStyle.Success: BadgeStyle.Danger)" Text="@(context.IsRoleActive ? "Active" : "Inactive")" />
+            </Template>
+        </RadzenDataGridColumn>
+    </Columns>
+</RadzenDataGrid>

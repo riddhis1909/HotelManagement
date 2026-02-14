@@ -1,0 +1,36 @@
+﻿@inherits LayoutComponentBase
+<RadzenComponent @rendermode="@(new InteractiveWebAssemblyRenderMode(prerender: false))"></RadzenComponent>
+<RadzenLayout>
+    <RadzenHeader>
+        <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0">
+            <RadzenSidebarToggle />
+            <RadzenLabel Text="Hotel Management" />
+        </RadzenStack>
+    </RadzenHeader>
+    <RadzenSidebar Responsive="false" Style="width: max-content">
+        <RadzenPanelMenu DisplayStyle="MenuItemDisplayStyle.IconAndText" ShowArrow="false">
+            <RadzenPanelMenuItem Text="List New Hotel" Icon="add_business" />
+            <RadzenPanelMenuItem Text="Listed Hotel" Icon="view_list" />
+            <RadzenPanelMenuItem Text="System Configuration" Icon="settings_applications">
+                <RadzenPanelMenuItem Text="Role List" Icon="list" Path="/RoleList" />
+                <RadzenPanelMenuItem Text="Country List" Icon="globe_asia" />
+                <RadzenPanelMenuItem Text="State List" Icon="globe_asia" />
+                <RadzenPanelMenuItem Text="Room Status List" Icon="list" />
+            </RadzenPanelMenuItem>
+        </RadzenPanelMenu>
+    </RadzenSidebar>
+    <RadzenBody>
+        @Body
+    </RadzenBody>
+</RadzenLayout>
+
+
+
+
+
+
+
+
+
+
+

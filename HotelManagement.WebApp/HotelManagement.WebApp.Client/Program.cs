@@ -17,5 +17,10 @@ if (baseUrl != null)
     {
         c.BaseAddress = new Uri(baseUrl);
     });
+
+    builder.Services.AddRefitClient<IRoleWebAppService>().ConfigureHttpClient(c =>
+    {
+        c.BaseAddress = new Uri(baseUrl);
+    });
 }
 await builder.Build().RunAsync();
